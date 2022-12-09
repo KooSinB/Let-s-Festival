@@ -181,7 +181,7 @@ export default function Layout({ title, children }) {
                       </Menu.Items>
                     </Menu>
                   ) : (
-                    <a
+                    <Link
                       href="/signin"
                       className="p-2 inline-flex justify-center rounded-md
             bg-orange-400 bg-opacity-80 px-4 py-2 text-sm font-medium
@@ -189,7 +189,7 @@ export default function Layout({ title, children }) {
             focus-visible:ring-white focus-visible:ring-opacity-75"
                     >
                       로그인
-                    </a>
+                    </Link>
                   )}
                 </span>
               </div>

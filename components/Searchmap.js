@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import data from '../utils/data'
 import Layout from '../components/Layout'
 
-export default function searchmap() {
+export default function Searchmap() {
   const [info, setInfo] = useState()
   const [isOpen, setIsOpen] = useState(false)
   const [markers, setMarkers] = useState([])
