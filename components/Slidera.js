@@ -82,10 +82,16 @@ function App() {
           } else className = 'card'
 
           return (
+            // eslint-disable-next-line react/jsx-key
             <div className={Styles.imgbox}>
-              <a href={item.url} key={item.id}>
+              <a href={item.url}>
                 <h3>
-                  <img className={className} src={item.image} alt="Comic"></img>
+                  <img
+                    className={className}
+                    key={item.id}
+                    src={item.image}
+                    alt="Comic"
+                  ></img>
                 </h3>
               </a>
             </div>
