@@ -82,16 +82,10 @@ function App() {
           } else className = 'card'
 
           return (
-            <div className={Styles.imgbox}>
+            <div className={Styles.imgbox} key={item.id}>
               <a href={item.url}>
-                {' '}
                 <h3>
-                  <img
-                    key={'${item.id}'}
-                    className={className}
-                    src={item.image}
-                    alt="Comic"
-                  ></img>
+                  <img className={className} src={item.image} alt="Comic"></img>
                 </h3>
               </a>
             </div>
