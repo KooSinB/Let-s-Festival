@@ -25,7 +25,7 @@ export default function Home() {
         <div class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
           <div class="mx-auto max-w-2xl text-center">
             <h1 class="text-3xl font-extrabold sm:text-5xl">
-              Let's
+              Let&#39;s
               <strong class="font-extrabold text-orange-500 sm:block">
                 Festival
               </strong>
