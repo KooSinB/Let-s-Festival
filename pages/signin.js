@@ -32,12 +32,12 @@ export default function SigninScreen() {
         email,
         password,
       })
-      console.log("Login: " + result.status);
+      console.log('Login: ' + result.status)
       await axios
-        .post("/api/auth/loginLog", { provider: "credentials" })
+        .post('/api/auth/loginLog', { provider: 'credentials' })
         .then((res) => {
-          console.log(res.data.message);
-        });
+          console.log(res.data.message)
+        })
       if ((result, errors)) {
         toast.error(result.error)
       }
@@ -139,11 +139,11 @@ export default function SigninScreen() {
               <div class="relative">
                 <input
                   type="email"
-                  {...register("email", {
-                    required: "이메일을 입력하세요.",
+                  {...register('email', {
+                    required: '이메일을 입력하세요.',
                     pattern: {
                       value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                      message: "이메일을 형식을 지켜주세요.",
+                      message: '이메일을 형식을 지켜주세요.',
                     },
                   })}
                   className="w-full rounded-lg border-slate-300 p-4 pr-12 text-sm shadow-sml"
@@ -181,11 +181,11 @@ export default function SigninScreen() {
               <div class="relative">
                 <input
                   type="password"
-                  {...register("password", {
-                    required: "비밀번호를 입력하세요.",
+                  {...register('password', {
+                    required: '비밀번호를 입력하세요.',
                     minLength: {
                       value: 3,
-                      message: "비밀번호를 3글자 이상으로 입력하세요.",
+                      message: '비밀번호를 3글자 이상으로 입력하세요.',
                     },
                   })}
                   class="w-full rounded-lg border-slate-300 p-4 pr-12 text-sm shadow-sm"
@@ -367,12 +367,12 @@ export default function SigninScreen() {
               </a> */}
               <p class="text-base inline-block mb-2 text-[#adadad] hover:text-primary">
                 아직 회원이 아니신가요? &nbsp;
-                <a
+                <Link
                   href="/signup"
                   class="text-primary text-blue-300 hover:underline"
                 >
                   회원가입
-                </a>
+                </Link>
               </p>
             </div>
           </form>
@@ -387,5 +387,5 @@ export default function SigninScreen() {
         </div>
       </section>
     </Layout>
-  );
+  )
 }

@@ -21,7 +21,7 @@ export default function developers() {
               <div className={Profile.textfooter}>
                 <a
                   href="https://github.com/MustHaveLove"
-                  target="_blank"
+                  target="blank"
                   className={Profile.text}
                 >
                   <BsGithub />
@@ -47,7 +47,7 @@ export default function developers() {
               <div className={Profile.textfooter}>
                 <a
                   href="https://github.com/JBUkim"
-                  target="_blank"
+                  target="blank"
                   className={Profile.text}
                 >
                   <BsGithub />
@@ -71,7 +71,7 @@ export default function developers() {
               <div className={Profile.textfooter}>
                 <a
                   href="https://github.com/withsjb/festivall"
-                  target="_blank"
+                  target="blank"
                   className={Profile.text}
                 >
                   <BsGithub />
@@ -95,7 +95,7 @@ export default function developers() {
               <div className={Profile.textfooter}>
                 <a
                   href="https://github.com/JBUpark21"
-                  target="_blank"
+                  target="blank"
                   className={Profile.text}
                 >
                   <BsGithub />
@@ -119,7 +119,7 @@ export default function developers() {
               <div className={Profile.textfooter}>
                 <a
                   href="https://github.com/KooSinB"
-                  target="_blank"
+                  target="blank"
                   className={Profile.text}
                 >
                   <BsGithub />

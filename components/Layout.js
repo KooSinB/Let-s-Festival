@@ -1,19 +1,19 @@
-import Head from 'next/head';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { signOut, useSession } from 'next-auth/react';
-import { Menu } from '@headlessui/react';
-import Cookies from 'js-cookie';
-import { ArrowUturnRightIcon, Cog6ToothIcon } from '@heroicons/react/20/solid';
-import Link from 'next/link';
-import Image from 'next/image';
+import Head from 'next/head'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { signOut, useSession } from 'next-auth/react'
+import { Menu } from '@headlessui/react'
+import Cookies from 'js-cookie'
+import { ArrowUturnRightIcon, Cog6ToothIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
+import Image from 'next/image'
 export default function Layout({ title, children }) {
-  const { status, data: session } = useSession();
+  const { status, data: session } = useSession()
 
   const logoutClickHandler = () => {
-    Cookies.remove('cart');
-    signOut({ callbackUrl: '/signin' });
-  };
+    Cookies.remove('cart')
+    signOut({ callbackUrl: '/signin' })
+  }
 
   return (
     <>
@@ -48,11 +48,11 @@ export default function Layout({ title, children }) {
               </svg>
             </button>
 
-            <a href="/" class="flex">
+            <Link href="/" class="flex">
               <div>
                 <img src="/logo.png" class="h-16"></img>
               </div>
-            </a>
+            </Link>
           </div>
 
           <div class="flex flex-1 items-center justify-end">
@@ -60,45 +60,45 @@ export default function Layout({ title, children }) {
               aria-label="Site Nav"
               class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500"
             >
-              <a
+              <Link
                 href="/Fmain"
                 class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
               >
                 축제 소개
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/Boardindex"
                 class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
               >
                 게시판
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/contact"
                 class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
               >
                 문의하기
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/about"
                 class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
               >
                 개발자
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/crypto/jwt"
                 class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
               >
                 Jwt
-              </a>
+              </Link>
             </nav>
 
             <div class="ml-8 flex items-center">
               <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
                 <span>
-                  {status === "loading" ? (
+                  {status === 'loading' ? (
                     <a
                       className="p-2 inline-flex justify-center rounded-md
             bg-orange-400 bg-opacity-80 px-4 py-2 text-sm font-medium
@@ -130,8 +130,8 @@ export default function Layout({ title, children }) {
                               <Link
                                 className={`${
                                   active
-                                    ? "bg-orange-400 text-white"
-                                    : "text-gray-900"
+                                    ? 'bg-orange-400 text-white'
+                                    : 'text-gray-900'
                                 } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                 href="/accountsetting"
                               >
@@ -156,8 +156,8 @@ export default function Layout({ title, children }) {
                               <button
                                 className={`${
                                   active
-                                    ? "bg-orange-400 text-white"
-                                    : "text-gray-900"
+                                    ? 'bg-orange-400 text-white'
+                                    : 'text-gray-900'
                                 } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                 href="/logout"
                                 onClick={logoutClickHandler}
@@ -204,7 +204,7 @@ export default function Layout({ title, children }) {
         <div class="py-3 uk-link-reset">
           <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
             <div class="flex space-x-2 text-gray-700 uppercase">
-              <a href="/about">About</a>
+              <Link href="/about">About</Link>
             </div>
             <p class="capitalize">
               Copyright &copy; 2022 Powered by Team FallGuys
@@ -213,5 +213,5 @@ export default function Layout({ title, children }) {
         </div>
       </footer>
     </>
-  );
+  )
 }

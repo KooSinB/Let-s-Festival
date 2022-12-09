@@ -1,19 +1,20 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Link from 'next/link'
 
 export default function FormPost(props) {
-  const router = useRouter();
+  const router = useRouter()
   const [data, setData] = useState({
     title: props.dataPost ? props.dataPost.title : '',
     author: props.dataPost ? props.dataPost.author : '',
-  });
+  })
 
   const handleChange = (e) => {
     setData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-    }));
-  };
+    }))
+  }
   const storeData = async (e) => {
     await fetch('http://localhost:5000/posts/', {
       method: 'POST',
@@ -23,10 +24,10 @@ export default function FormPost(props) {
       },
     })
       .then((response) => response.json())
-      .then((json) => console.log(json));
+      .then((json) => console.log(json))
 
-    router.push('/');
-  };
+    router.push('/')
+  }
 
   const updateData = async (e) => {
     await fetch('http://localhost:5000/posts/' + props.dataPost.id, {
@@ -37,22 +38,22 @@ export default function FormPost(props) {
       },
     })
       .then((response) => response.json())
-      .then((json) => console.log(json));
+      .then((json) => console.log(json))
 
-    router.push('/');
-  };
+    router.push('/')
+  }
 
   const handleButton = (action) => {
     if (action == 'add') {
       return (
-        <a
+        <Link
           className="rounded text-gray-100 mt-96 absolute px-5 py-1 bg-red-500 hover:shadow-inner hover:bg-red-700 transition-all duration-300"
           onClick={storeData}
           href="/Boardindex"
         >
           올리기
-        </a>
-      );
+        </Link>
+      )
     } else if (action == 'update') {
       return (
         <a
@@ -61,9 +62,9 @@ export default function FormPost(props) {
         >
           업데이트
         </a>
-      );
+      )
     }
-  };
+  }
 
   return (
     <div className="h-screen">
@@ -110,5 +111,5 @@ export default function FormPost(props) {
         {handleButton(props.action)}
       </form>
     </div>
-  );
+  )
 }

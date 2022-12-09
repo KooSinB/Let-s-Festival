@@ -1,31 +1,32 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React from 'react'
+import { useRouter } from 'next/router'
 import {
   Map,
   MapMarker,
   ZoomControl,
   MapTypeControl,
   CustomOverlayMap,
-} from "react-kakao-maps-sdk";
-import { useState, useEffect } from "react";
-import data from "../utils/data";
+} from 'react-kakao-maps-sdk'
+import { useState, useEffect } from 'react'
+import data from '../utils/data'
+import Layout from '../components/Layout'
 
 export default function searchmap() {
-  const [info, setInfo] = useState();
-  const [isOpen, setIsOpen] = useState(false);
-  const [markers, setMarkers] = useState([]);
-  const [map, setMap] = useState();
+  const [info, setInfo] = useState()
+  const [isOpen, setIsOpen] = useState(false)
+  const [markers, setMarkers] = useState([])
+  const [map, setMap] = useState()
 
   useEffect(() => {
-    if (!map) return;
-    const ps = new kakao.maps.services.Places();
+    if (!map) return
+    const ps = new kakao.maps.services.Places()
 
     ps.keywordSearch(festival.restaurant, (data, status, _pagination) => {
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
-        const bounds = new kakao.maps.LatLngBounds();
-        let markers = [];
+        const bounds = new kakao.maps.LatLngBounds()
+        let markers = []
 
         for (var i = 0; i < data.length; i++) {
           // @ts-ignore
@@ -35,24 +36,24 @@ export default function searchmap() {
               lng: data[i].x,
             },
             content: data[i].place_name,
-          });
+          })
           // @ts-ignore
-          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x))
         }
-        setMarkers(markers);
+        setMarkers(markers)
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-        map.setBounds(bounds);
+        map.setBounds(bounds)
       }
-    });
-  }, [map]);
+    })
+  }, [map])
 
-  const { query } = useRouter();
-  const { slug } = query;
-  const festival = data.festivals.find((x) => x.slug === slug);
+  const { query } = useRouter()
+  const { slug } = query
+  const festival = data.festivals.find((x) => x.slug === slug)
 
   if (!festival) {
-    return <Layout title="Festival Not Found">Festival Not Found</Layout>;
+    return <Layout title="Festival Not Found">Festival Not Found</Layout>
   }
 
   return (
@@ -63,8 +64,8 @@ export default function searchmap() {
           lng: 126.9786567,
         }}
         style={{
-          width: "100%",
-          height: "400px",
+          width: '100%',
+          height: '400px',
         }}
         level={2}
         onCreate={setMap}
@@ -75,16 +76,16 @@ export default function searchmap() {
             position={marker.position}
             clickable={true}
             onMouseOver={() => {
-              setIsOpen(true), setInfo(marker);
+              setIsOpen(true), setInfo(marker)
             }}
             onMouseOut={() => {
-              setIsOpen(false), setInfo(marker);
+              setIsOpen(false), setInfo(marker)
             }}
           >
             {info && info.content === marker.content && isOpen && (
               // <div style={{ color: "#000" }}>{marker.content}</div>
               <div
-                style={{ color: "#000" }}
+                style={{ color: '#000' }}
                 className="box-content h-10 w-60  text-center text-lg items-center"
               >
                 {marker.content}
@@ -96,5 +97,5 @@ export default function searchmap() {
         <ZoomControl Position="left"></ZoomControl>
       </Map>
     </div>
-  );
+  )
 }
