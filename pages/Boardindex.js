@@ -1,27 +1,27 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import { useState } from 'react';
+import Link from 'next/link';
+import Layout from '../components/Layout';
 
 export default function Post(props) {
-  const [post, setPost] = useState(props.data)
+  const [post, setPost] = useState(props.data);
 
   const getAll = async () => {
-    const res = await fetch('http://localhost:5000/posts')
-    const data = await res.json()
+    const res = await fetch('https://json-jbupark21.vercel.app/posts');
+    const data = await res.json();
 
-    setPost(data)
-  }
+    setPost(data);
+  };
 
   const deletePost = async (id) => {
-    console.log('tes')
-    await fetch('http://localhost:5000/posts/' + id, {
+    console.log('tes');
+    await fetch('https://json-jbupark21.vercel.app/posts' + id, {
       method: 'DELETE',
-    })
-    getAll()
-  }
+    });
+    getAll();
+  };
 
   const loppPost = (post) => {
-    console.log(post)
+    console.log(post);
     return post.map((item, index) => {
       return (
         <div key={item.id}>
@@ -46,14 +46,14 @@ export default function Post(props) {
           </div>
           <br />
         </div>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <Layout title="Board">
       <div>
-        <div className="container mx-auto px-4 max-w-screen-sm h-screen">
+        <div className="container mx-auto px-4 max-w-screen-sm">
           <div>
             <Link href="/Boardcreate">
               <div className="bg-red-600 mt-20 text-center text-white px-4  py-2 my-4 inline-block">
@@ -65,20 +65,20 @@ export default function Post(props) {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch('http://localhost:5000/posts')
-  const data = await res.json()
+  const res = await fetch('https://json-jbupark21.vercel.app/posts');
+  const data = await res.json();
 
   if (!data) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
     props: { data }, // will be passed to the page component as props
-  }
+  };
 }

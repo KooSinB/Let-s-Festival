@@ -1,33 +1,33 @@
-import React, { useState } from 'react'
-import Layout from '../../components/Layout'
-import jwt from 'jsonwebtoken'
-import axios from 'axios'
-import { useSession } from 'next-auth/react'
-import Link from 'next/link'
+import React, { useState } from 'react';
+import Layout from '../../components/Layout';
+import jwt from 'jsonwebtoken';
+import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 export default function JwtScreen() {
-  const { data: session } = useSession()
-  const userEmail = session?.user.email
+  const { data: session } = useSession();
+  const userEmail = session?.user.email;
 
-  const [username, setUsername] = useState(userEmail)
-  const [token, setToken] = useState('')
-  const [decoded, setDecoded] = useState('')
-  const [result, setResult] = useState('')
+  const [username, setUsername] = useState(userEmail);
+  const [token, setToken] = useState('');
+  const [decoded, setDecoded] = useState('');
+  const [result, setResult] = useState('');
 
   const genJwt = async () => {
     await axios.post('/api/crypto/jwt', { username }).then((res) => {
-      setToken(res.data.token)
-      localStorage.setItem('jwt', res.data.token)
-      let decoded = jwt.decode(res.data.token)
-      setDecoded(JSON.stringify(decoded))
-    })
-  }
+      setToken(res.data.token);
+      localStorage.setItem('jwt', res.data.token);
+      let decoded = jwt.decode(res.data.token);
+      setDecoded(JSON.stringify(decoded));
+    });
+  };
 
   const verifyJwt = async () => {
     await axios.post('/api/crypto/jwt-v', { token }).then((res) => {
-      setResult(res.data.result)
-    })
-  }
+      setResult(res.data.result);
+    });
+  };
 
   return (
     <Layout title="JWT">
@@ -46,7 +46,7 @@ export default function JwtScreen() {
             class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
           >
             <div class="max-w-xl lg:max-w-3xl">
-              <Link class="block text-orange-300" href="/">
+              <Link href="/" class="block text-orange-300">
                 <span class="sr-only">Home</span>
               </Link>
 
@@ -162,5 +162,5 @@ export default function JwtScreen() {
         </div>
       </section>
     </Layout>
-  )
+  );
 }

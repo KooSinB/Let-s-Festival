@@ -1,9 +1,9 @@
-import Layout from '../components/Layout'
-import Styles from '../styles/Home.module.css'
-import Slider from 'react-slick'
-import Link from 'next/link'
-import { ArrowUpIcon } from '@heroicons/react/20/solid'
-import Slidera from '../components/Slidera'
+import Layout from '../components/Layout';
+import Styles from '../styles/Home.module.css';
+import Slider from 'react-slick';
+import { ArrowUpIcon } from '@heroicons/react/20/solid';
+import Slidera from '../components/Slidera';
+import Link from 'next/link';
 
 export default function Home() {
   const settings = {
@@ -15,7 +15,7 @@ export default function Home() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-  }
+  };
 
   return (
     <Layout title="Home">
@@ -40,15 +40,15 @@ export default function Home() {
 
             <div class="mt-8 flex flex-wrap justify-center gap-4">
               <Link
-                class="block w-full rounded bg-orange-400 px-12 py-3 text-sm font-medium text-white shadow hover:bg-orange-500 focus:outline-none focus:ring active:bg-orange-500 sm:w-auto"
                 href="/signin"
+                class="block w-full rounded bg-orange-400 px-12 py-3 text-sm font-medium text-white shadow hover:bg-orange-500 focus:outline-none focus:ring active:bg-orange-500 sm:w-auto"
               >
                 로그인
               </Link>
 
               <Link
-                class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-orange-400 shadow hover:text-orange-600 focus:outline-none focus:ring active:text-orange-500 sm:w-auto"
                 href="/signup"
+                class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-orange-400 shadow hover:text-orange-600 focus:outline-none focus:ring active:text-orange-500 sm:w-auto"
               >
                 회원가입
               </Link>
@@ -89,9 +89,9 @@ export default function Home() {
         ></iframe>
       </div>
 
-      <a href="#" className={Styles.back_to_top}>
+      <Link href="#" className={Styles.back_to_top}>
         <ArrowUpIcon></ArrowUpIcon>
-      </a>
+      </Link>
     </Layout>
-  )
+  );
 }

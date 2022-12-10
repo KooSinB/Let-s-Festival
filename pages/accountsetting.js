@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
-import { signIn, useSession } from 'next-auth/react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
-import { getError } from '../utils/error'
-import axios from 'axios'
-import Layout from '../components/Layout'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import React, { useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { getError } from '../utils/error';
+import axios from 'axios';
+import Layout from '../components/Layout';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function AccountsettingScreen() {
-  const router = useRouter()
-  const { redirect } = router.query
+  const router = useRouter();
+  const { redirect } = router.query;
 
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   // useEffect(() => {
   //   if (session?.user) {
@@ -26,12 +26,12 @@ export default function AccountsettingScreen() {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   useEffect(() => {
-    setValue('name', session?.user.name)
-    setValue('email', session?.user.email)
-  }, [session?.user, setValue])
+    setValue('name', session?.user.name);
+    setValue('email', session?.user.email);
+  }, [session?.user, setValue]);
 
   const submitHandler = async ({ name, email, password }) => {
     try {
@@ -39,20 +39,20 @@ export default function AccountsettingScreen() {
         name,
         email,
         password,
-      })
+      });
       const result = await signIn('credentials', {
         redirect: false,
         email,
         password,
-      })
-      toast.success('Profile updated successfully')
+      });
+      toast.success('Profile updated successfully');
       if (result.error) {
-        toast.error(result.error)
+        toast.error(result.error);
       }
     } catch (err) {
-      toast.error(getError(err))
+      toast.error(getError(err));
     }
-  }
+  };
 
   return (
     <Layout title="Profile">
@@ -308,13 +308,13 @@ export default function AccountsettingScreen() {
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
-                  <a
+                  <Link
                     href={`/signin?redirect=${redirect || '/'}`}
                     class="inline-block shrink-0 rounded-md border border-orange-300 bg-orange-300 px-12 py-3 text-sm font-medium text-white transition 
                   hover:bg-transparent hover:text-orange-300 focus:outline-none focus:ring-orange-400 focus:ring-2 active:text-orange-500"
                   >
                     메인 돌아가기
-                  </a>
+                  </Link>
                 </div>
               </form>
             </div>
@@ -322,7 +322,7 @@ export default function AccountsettingScreen() {
         </div>
       </section>
     </Layout>
-  )
+  );
 }
 
-AccountsettingScreen.auth = true
+AccountsettingScreen.auth = true;

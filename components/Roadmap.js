@@ -1,22 +1,22 @@
-import { Map, MapMarker, Roadview, MapTypeId } from 'react-kakao-maps-sdk'
-import React, { useState } from 'react'
-import { useRouter } from 'next/router'
-import data from '../utils/data'
-import Layout from '../components/Layout'
+import { Map, MapMarker, Roadview, MapTypeId } from 'react-kakao-maps-sdk';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import data from '../utils/data';
+import Layout from '../components/Layout';
 
 export default function Roadmap() {
-  const { query } = useRouter()
-  const { slug } = query
-  const festival = data.festivals.find((x) => x.slug === slug)
+  const { query } = useRouter();
+  const { slug } = query;
+  const festival = data.festivals.find((x) => x.slug === slug);
 
-  const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false);
   const [center, setCenter] = useState({
     lat: festival.lat,
     lng: festival.lng,
-  })
+  });
 
   if (!festival) {
-    return <Layout title="Festival Not Found">Festival Not Found</Layout>
+    return <Layout title="Festival Not Found">Festival Not Found</Layout>;
   }
 
   return (
@@ -39,8 +39,8 @@ export default function Roadmap() {
             lat: mouseEvent.latLng.getLat(),
             // @ts-ignore
             lng: mouseEvent.latLng.getLng(),
-          })
-          setIsError(false)
+          });
+          setIsError(false);
         }}
       >
         <MapMarker
@@ -52,8 +52,8 @@ export default function Roadmap() {
               lat: marker.getPosition().getLat(),
               // @ts-ignore
               lng: marker.getPosition().getLng(),
-            })
-            setIsError(false)
+            });
+            setIsError(false);
           }}
           image={{
             src: 'https://t1.daumcdn.net/localimg/localimages/07/2018/pc/roadview_minimap_wk_2018.png',
@@ -76,5 +76,5 @@ export default function Roadmap() {
         onErrorGetNearestPanoId={() => setIsError(true)}
       ></Roadview>
     </div>
-  )
+  );
 }

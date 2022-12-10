@@ -1,31 +1,31 @@
-import Link from 'next/link'
-import React, { useEffect } from 'react'
-import { signIn, useSession } from 'next-auth/react'
-import { useForm } from 'react-hook-form'
-import Layout from '../components/Layout'
-import { getError } from '../utils/error'
-import { toast } from 'react-toastify'
-import { useRouter } from 'next/router'
-import axios from 'axios'
+import Link from 'next/link';
+import React, { useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
+import Layout from '../components/Layout';
+import { getError } from '../utils/error';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 export default function RegisterScreen() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
-  const router = useRouter()
-  const { redirect } = router.query
+  const router = useRouter();
+  const { redirect } = router.query;
 
   useEffect(() => {
     if (session?.user) {
-      router.push(redirect || '/')
+      router.push(redirect || '/');
     }
-  }, [router, session, redirect])
+  }, [router, session, redirect]);
 
   const {
     handleSubmit,
     register,
     getValues,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const submitHandler = async ({ name, email, password }) => {
     try {
@@ -33,20 +33,20 @@ export default function RegisterScreen() {
         name,
         email,
         password,
-      })
+      });
 
       const result = await signIn('credentials', {
         redirect: false,
         email,
         password,
-      })
+      });
       if (result.error) {
-        toast.error(result.error)
+        toast.error(result.error);
       }
     } catch (err) {
-      toast.error(getError(err))
+      toast.error(getError(err));
     }
-  }
+  };
   return (
     <Layout title="Create Account">
       <section class="bg-white">
@@ -216,12 +216,12 @@ export default function RegisterScreen() {
                 <div class="col-span-6 flex justify-center">
                   <p class="text-base inline-block mb-2 text-[#adadad] hover:text-primary">
                     이미 계정이 있으신가요? &nbsp;
-                    <a
+                    <Link
                       href={`/signin?redirect=${redirect || '/'}`}
                       class="text-primary text-blue-300 hover:underline"
                     >
                       로그인
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </form>
@@ -230,5 +230,5 @@ export default function RegisterScreen() {
         </div>
       </section>
     </Layout>
-  )
+  );
 }

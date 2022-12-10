@@ -1,19 +1,19 @@
-import Head from 'next/head'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { signOut, useSession } from 'next-auth/react'
-import { Menu } from '@headlessui/react'
-import Cookies from 'js-cookie'
-import { ArrowUturnRightIcon, Cog6ToothIcon } from '@heroicons/react/20/solid'
-import Link from 'next/link'
-import Image from 'next/image'
+import Head from 'next/head';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { signOut, useSession } from 'next-auth/react';
+import { Menu } from '@headlessui/react';
+import Cookies from 'js-cookie';
+import { ArrowUturnRightIcon, Cog6ToothIcon } from '@heroicons/react/20/solid';
+import Link from 'next/link';
+import Image from 'next/image';
 export default function Layout({ title, children }) {
-  const { status, data: session } = useSession()
+  const { status, data: session } = useSession();
 
   const logoutClickHandler = () => {
-    Cookies.remove('cart')
-    signOut({ callbackUrl: '/signin' })
-  }
+    Cookies.remove('cart');
+    signOut({ callbackUrl: '/signin' });
+  };
 
   return (
     <>
@@ -87,6 +87,7 @@ export default function Layout({ title, children }) {
               >
                 개발자
               </Link>
+
               <Link
                 href="/crypto/jwt"
                 class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
@@ -99,14 +100,14 @@ export default function Layout({ title, children }) {
               <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
                 <span>
                   {status === 'loading' ? (
-                    <a
+                    <div
                       className="p-2 inline-flex justify-center rounded-md
             bg-orange-400 bg-opacity-80 px-4 py-2 text-sm font-medium
             text-white hover:bg-opacity-100 focus:outline-none focus-visible:ring-2
             focus-visible:ring-white focus-visible:ring-opacity-75"
                     >
                       연결중..
-                    </a>
+                    </div>
                   ) : session?.user ? (
                     <Menu as="div" className="relative inline-block text-left">
                       <Menu.Button
@@ -213,5 +214,5 @@ export default function Layout({ title, children }) {
         </div>
       </footer>
     </>
-  )
+  );
 }
