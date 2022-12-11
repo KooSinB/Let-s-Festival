@@ -1,18 +1,18 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
-import Layout from '../../components/Layout';
-import data from '../../utils/data';
-import Slider from 'react-slick';
-import Styles from '../../styles/intro.module.css';
-import Searchmap from '../../components/Searchmap';
-import Roadmap from '../../components/Roadmap';
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React from 'react'
+import Layout from '../../components/Layout'
+import data from '../../utils/data'
+import Slider from 'react-slick'
+import Styles from '../../styles/intro.module.css'
+import Searchmap from '../../components/Searchmap'
+import Roadmap from '../../components/Roadmap'
 
 export default function FestivalScreen() {
-  const { query } = useRouter();
-  const { slug } = query;
-  const festival = data.festivals.find((x) => x.slug === slug);
+  const { query } = useRouter()
+  const { slug } = query
+  const festival = data.festivals.find((x) => x.slug === slug)
 
   const settings = {
     arrows: true,
@@ -23,10 +23,10 @@ export default function FestivalScreen() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-  };
+  }
 
   if (!festival) {
-    return <Layout title="Festival Not Found">Festival Not Found</Layout>;
+    return <Layout title="Festival Not Found">Festival Not Found</Layout>
   }
 
   return (
@@ -161,6 +161,7 @@ export default function FestivalScreen() {
                 {festival.restaurant} 에 대해서 알려드립니다.
               </p>
               <a
+                target="_blank"
                 href={`https://map.kakao.com/link/map/${festival.location},${festival.lat},${festival.lng}`}
                 class="mt-8 inline-flex items-center rounded border border-indigo-600 bg-indigo-600 px-8 py-3 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
               >
@@ -185,5 +186,5 @@ export default function FestivalScreen() {
         </div>
       </section>
     </Layout>
-  );
+  )
 }
