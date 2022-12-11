@@ -1,19 +1,19 @@
-import Head from 'next/head';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { signOut, useSession } from 'next-auth/react';
-import { Menu } from '@headlessui/react';
-import Cookies from 'js-cookie';
-import { ArrowUturnRightIcon, Cog6ToothIcon } from '@heroicons/react/20/solid';
-import Link from 'next/link';
-import Image from 'next/image';
+import Head from 'next/head'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { signOut, useSession } from 'next-auth/react'
+import { Menu } from '@headlessui/react'
+import Cookies from 'js-cookie'
+import { ArrowUturnRightIcon, Cog6ToothIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
+import Image from 'next/image'
 export default function Layout({ title, children }) {
-  const { status, data: session } = useSession();
+  const { status, data: session } = useSession()
 
   const logoutClickHandler = () => {
-    Cookies.remove('cart');
-    signOut({ callbackUrl: '/signin' });
-  };
+    Cookies.remove('cart')
+    signOut({ callbackUrl: '/signin' })
+  }
 
   return (
     <>
@@ -75,6 +75,13 @@ export default function Layout({ title, children }) {
               </Link>
 
               <Link
+                href="/crypto/jwt"
+                class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
+              >
+                JWT
+              </Link>
+
+              <Link
                 href="/contact"
                 class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
               >
@@ -86,13 +93,6 @@ export default function Layout({ title, children }) {
                 class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
               >
                 개발자
-              </Link>
-
-              <Link
-                href="/crypto/jwt"
-                class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-orange-400 mx-4"
-              >
-                Jwt
               </Link>
             </nav>
 
@@ -214,5 +214,5 @@ export default function Layout({ title, children }) {
         </div>
       </footer>
     </>
-  );
+  )
 }
